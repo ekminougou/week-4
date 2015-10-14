@@ -19,27 +19,29 @@
 
 		/*EXPERIMENT WITH DIFFERENT STYLING FOR THE CIRCLES AND WHAT HAPPENS WHEN THE MOUSE HOVERS OVER THEM*/
 		circle {
-			fill-opacity: .3;
+			fill-opacity: .5;
 			fill: red;
-			stroke-width: 0px;
+			stroke-width: 2px;
 		}
 		circle:hover {
-		  	stroke: black;
-		  	stroke-width: 2px;
+			fill: orange;
+		  	stroke: orange;
+		  	stroke-width: 6px;
 		  	cursor: crosshair;
 		}
 
 		/*EXPERIMENT WITH YOUR OWN STYLING RULES TO CHANGE THE APPEARANCE OF THE TOOLTIP, THE MENU, AND THE MESSAGE TEXT*/
 		div.tooltip{
-			padding: 6px;
+			padding: 3px;
 			background: white;
 			visibility: hidden;
-			position: absolute;
+			position: relative;
 			z-index: 10;
+			opacity: .75;
 		}
 		p.tooltip-text{
-			margin: 0px;
-			padding: 0px;
+			margin: 2px;
+			padding: 2px;
 		}
 
 		div.menu{
@@ -70,6 +72,9 @@
 	<div class="tooltip">
 		<p class="tooltip-text" id="title">This is the title</p>
 		<p class="tooltip-text" id="price">This is the price</p>
+		<p class="tooltip-text" id="latitude">This is the latitude</p>
+		<p class="tooltip-text" id="longitude">This is the longitude</p>
+
 	</div>
 
 	<!-- EXPERIMENT WITH OTHER FORM ELEMENTS, AND ADD SOME TEXT TO THE MENU TO EXPLAIN WHAT IS HAPPENING ON THE SITE -->
@@ -77,6 +82,7 @@
 		<p><h4>DMC Web Stack</h4></p>
 		<form>
 			<p><input id="heatmap" type="checkbox">Heat Map</p>
+			<p><input id="subtitle" >Shows Rental Pricws</p>
 			<p><input type="button" value="Update Data" onclick="updateData()"></p>
 			<p>Status: <em id="message"></em></p>
 		</form>
@@ -97,6 +103,8 @@
 		var tooltip = d3.select("div.tooltip");
 		var tooltip_title = d3.select("#title");
 		var tooltip_price = d3.select("#price");
+		var tooltip_title = d3.select("#latitude");
+		var tooltip_price = d3.select("#longitude");
 
 
 		var map = L.map('map').setView([22.539029, 114.062076], 16);
